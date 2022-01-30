@@ -1,7 +1,7 @@
 
 export type FormObject = {
-field: String
-hidden: boolean
+field: string
+hidden: string
 label: string
 mandatory: boolean
 type: string

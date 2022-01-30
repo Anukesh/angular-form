@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { FormObject } from './common/types/form';
 import { FormDataService } from './services/form-data.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { FormDataService } from './services/form-data.service';
 })
 export class AppComponent implements OnInit{
   title = 'angular-forms';
-  formData: any = [];
+  formData: Observable<FormObject[]> | undefined;
   constructor(private formDataService: FormDataService){
   }
 

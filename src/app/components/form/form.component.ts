@@ -10,7 +10,7 @@ import { FormObject } from 'src/app/common/types/form';
 })
 export class FormComponent implements  OnChanges {
   @Input()
-  data: any = [];
+  data: FormObject[] | undefined | null;
   items!: {
     [key: string]: number | string;
   };
@@ -27,10 +27,10 @@ export class FormComponent implements  OnChanges {
 
     const obj: any ={};
 
- for (const key of this.data) {
-      this.formObj[key.field] = [''];
-      key.mandatory? this.formObj[key.field].push(Validators.required):null;
- }
+ this.data?.forEach(key=>{
+  this.formObj[key.field] = [''];
+  key.mandatory? this.formObj[key.field].push(Validators.required):null;
+ })
 
  console.log(this.formObj);
     this.profileForm = this.fb.group(this.formObj);
