@@ -2,8 +2,23 @@
 <div *ngFor="let obj of data" class="form-group form-check">
 <ng-container *ngIf="obj.hidden !== 'true'">
   <label [for]="obj.field">{{obj.label}}: </label>
-  <input class="form-check-input" [ngClass]= "{'form-error': isFieldValid(obj.field)}" [id]="obj.field" [type]="obj.type =='check'?'checkbox':obj.type" [formControlName]="obj.field">
-  </ng-container>
+  <input
+  *ngIf="obj.type === 'check'"
+  class="form-check-input"
+  [ngClass]="{ 'form-error': isFieldValid(obj.field) }"
+  [id]="obj.field"
+  type="checkbox"
+  [formControlName]="obj.field"
+/>
+
+<input
+  *ngIf="obj.type !== 'check'"
+  class="form-check-input"
+  [ngClass]="{ 'form-error': isFieldValid(obj.field) }"
+  [id]="obj.field"
+  [type]="obj.type"
+  [formControlName]="obj.field"
+/>  </ng-container>
   <div *ngIf ="isFieldValid(obj.field)">{{obj.label}} is required</div>
 </div>
   <button type="submit" [disabled]="!profileForm.valid">Submit</button>
